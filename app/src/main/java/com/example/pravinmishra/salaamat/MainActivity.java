@@ -24,7 +24,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private static final String URL_FOR_LOGIN = "https://XXX.XXX.X.XX/android_login_example/login.php";
+   private static final String URL_FOR_LOGIN = "http://127.0.0.1/login.php";
     ProgressDialog progressDialog;
     private EditText loginInputEmail, loginInputPassword;
     private Button btnlogin;
@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loginInputEmail = (EditText) findViewById(R.id.login_input_email);
+        //super.onCreate(savedInstanceState);
+       loginInputEmail = (EditText) findViewById(R.id.login_input_email);
         loginInputPassword = (EditText) findViewById(R.id.login_input_password);
         btnlogin = (Button) findViewById(R.id.btn_login);
         btnLinkSignup = (Button) findViewById(R.id.btn_link_signup);

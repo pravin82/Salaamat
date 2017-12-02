@@ -28,7 +28,7 @@ import java.util.Map;
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
-    private static final String URL_FOR_REGISTRATION = "https://XXX.XXX.X.XX/android_login_example/register.php";
+    private static final String URL_FOR_REGISTRATION = "http://127.0.0.1/android_login_api/register.php";
     ProgressDialog progressDialog;
 
     private EditText signupInputName, signupInputEmail, signupInputPassword, signupInputAge;
@@ -144,8 +144,8 @@ public class RegisterActivity extends AppCompatActivity {
                 params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
-                params.put("gender", gender);
-                params.put("age", dob);
+//                params.put("gender", gender);
+//                params.put("age", dob);
                 return params;
             }
         };
