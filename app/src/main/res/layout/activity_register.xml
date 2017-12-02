@@ -66,6 +66,20 @@
                 android:ems="10"
                 android:inputType="number"
                 android:hint="Age"/>
+        <EditText
+            android:id="@+id/signup_input_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="weight"/>
+        <EditText
+            android:id="@+id/signup_input_height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="height"/>
         <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
         <RelativeLayout
             android:layout_width="match_parent"
@@ -80,6 +94,7 @@
                 android:fontFeatureSettings="@string/hint_password"
                 android:textSize="20dp"
                 android:fontFamily="@string/hint_password"/>
+
             <RadioGroup
                 android:id="@+id/gender_radio_group"
                 android:layout_width="wrap_content"
@@ -100,6 +115,83 @@
                     android:text = "@string/female"
                     />
             </RadioGroup>
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"/>
+
+
+            <TextView
+                android:id="@+id/smoking_textview"
+                android:paddingRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Smoking habit"
+                android:fontFeatureSettings="@string/hint_password"
+                android:textSize="20dp"
+                android:fontFamily="@string/hint_password"/>
+
+            <RadioGroup
+                android:id="@+id/smoking_radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/smoking_textview"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/no_smokingradio_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No"
+                    android:checked="true"
+                    />
+
+                <RadioButton
+                    android:id="@+id/greater_radio_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text = "yes"
+                    />
+            </RadioGroup>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp">
+            <TextView
+                android:id="@+id/drinking_textview"
+                android:paddingRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Drinking habit"
+                android:fontFeatureSettings="@string/hint_password"
+                android:textSize="20dp"
+                android:fontFamily="@string/hint_password"/>
+
+            <RadioGroup
+                android:id="@+id/drinking_radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/drinking_textview"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/no_radio_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No"
+                    android:checked="true"
+                    />
+
+                <RadioButton
+                    android:id="@+id/yes_radio_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text = "yes"
+                    />
+            </RadioGroup>
+
+
         </RelativeLayout>
         <Button android:id="@+id/btn_signup"
             android:layout_width="fill_parent"

@@ -24,7 +24,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-   private static final String URL_FOR_LOGIN = "http://127.0.0.1/login.php";
+   private static final String URL_FOR_LOGIN = "https://salaamat.000webhostapp.com/login2.php";
     ProgressDialog progressDialog;
     private EditText loginInputEmail, loginInputPassword;
     private Button btnlogin;
@@ -75,9 +75,9 @@ public class MainActivity extends AppCompatActivity {
                 hideDialog();
                 try {
                     JSONObject jObj = new JSONObject(response);
-                    boolean error = jObj.getBoolean("error");
+                    boolean error = jObj.getBoolean("success");
 
-                    if (!error) {
+                    if (error) {
                         String user = jObj.getJSONObject("user").getString("name");
                         // Launch User activity
                         Intent intent = new Intent(
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                     } else {
 
-                        String errorMsg = jObj.getString("error_msg");
+                        String errorMsg = jObj.getString("success");
                         Toast.makeText(getApplicationContext(),
                                 errorMsg, Toast.LENGTH_LONG).show();
                     }
