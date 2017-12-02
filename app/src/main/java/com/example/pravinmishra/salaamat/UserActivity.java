@@ -7,9 +7,17 @@ import android.os.StrictMode;
 import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+//import weka.classifiers.functions.SMO;
+//import weka.core.DenseInstance;
+//import weka.core.Instance;
+//import weka.core.Instances;
+//import weka.core.converters.CSVLoader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +42,7 @@ import java.util.TimerTask;
 
 public class UserActivity extends AppCompatActivity {
 
-    private TextView name, username, age, height, weight, gender, smoking, drinking;
+    private TextView name, username, age, height, weight, gender, smoking, drinking, yourapi, yourcl, yourhr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +56,9 @@ public class UserActivity extends AppCompatActivity {
         gender = (TextView) findViewById(R.id.gender);
         smoking = (TextView) findViewById(R.id.smoking);
         drinking = (TextView) findViewById(R.id.drinking);
+        yourapi = (TextView) findViewById(R.id.yourapi);
+        yourcl = (TextView) findViewById(R.id.yourcl);
+        yourhr = (TextView) findViewById(R.id.yourhr);
 
         Intent intent = getIntent();
         String name_i = intent.getStringExtra("name");
@@ -84,7 +95,7 @@ public class UserActivity extends AppCompatActivity {
                 });
 
             }
-        }, 0, 60000);
+        }, 0, 6000);
 
     }
 
@@ -109,58 +120,58 @@ public class UserActivity extends AppCompatActivity {
 
         private String miclass2CustomMethod(String vinay) {
             //HashMap<String, String> user1 = db.getUserDetails();
-            CSVLoader loader = new CSVLoader();
-            CalendarContract.Instances trainDataset = null;
-            AssetManager manager = getAssets();
-            try {
-                InputStream ttt = manager.open("StaticTrainData1.csv");
-                loader.setSource(ttt);
-                SMO svm = new SMO();
-                trainDataset = loader.getDataSet();
-                trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
-                svm.buildClassifier(trainDataset);
-                Instance inst = new DenseInstance(trainDataset.numAttributes());
-                inst.setDataset(trainDataset);
-                inst.setValue(0, Integer.parseInt(user1.get("age")));
-                inst.setValue(1, Integer.parseInt(user1.get("height")));
-                inst.setValue(2, Integer.parseInt(user1.get("weight")));
-                inst.setValue(3, Integer.parseInt(user1.get("smokinghabit")));
-                inst.setValue(4, Integer.parseInt(user1.get("alcoholhabit")));
-                inst.setValue(5, Integer.parseInt(user1.get("workertrade")));
-//                heart = "140";
-                heart = vinay;
-//                inst.setValue(6, Integer.parseInt(String.valueOf(txtYourapi)));
-                String yourclass = "";
-                if (heart != "") {
-                    inst.setValue(6, Integer.parseInt(heart));
-//                String hr = new MiClass1;
-                    double predSVM = 0;
-                    predSVM = svm.classifyInstance(inst);
-                    String predString = trainDataset.classAttribute().value((int) predSVM);
-                    //String yourclass = "You belong to " + "'"+ predString+ "'";
-                    yourclass = predString;
-                } else {
-                    yourclass = "Null Prediction";
-                }
-
-                txtYourclass.setText(yourclass);
-                String phoneNumber = "9932186594";
-                String smsBody = "You belong to "+ yourclass ;
-                SmsManager smsManager = SmsManager.getDefault();
-//                smsManager.sendTextMessage(phoneNumber, null, smsBody, null, null);
-                return yourclass;
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            CSVLoader loader = new CSVLoader();
+//            CalendarContract.Instances trainDataset = null;
+//            AssetManager manager = getAssets();
+//            try {
+//                InputStream ttt = manager.open("StaticTrainData1.csv");
+//                loader.setSource(ttt);
+//                SMO svm = new SMO();
+//                trainDataset = loader.getDataSet();
+//                trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
+//                svm.buildClassifier(trainDataset);
+//                Instance inst = new DenseInstance(trainDataset.numAttributes());
+//                inst.setDataset(trainDataset);
+//                inst.setValue(0, Integer.parseInt(intent.getStringExtra("age")));
+//                inst.setValue(1, Integer.parseInt(user1.get("height")));
+//                inst.setValue(2, Integer.parseInt(user1.get("weight")));
+//                inst.setValue(3, Integer.parseInt(user1.get("smokinghabit")));
+//                inst.setValue(4, Integer.parseInt(user1.get("alcoholhabit")));
+//                inst.setValue(5, Integer.parseInt(user1.get("workertrade")));
+////                heart = "140";
+//                heart = vinay;
+////                inst.setValue(6, Integer.parseInt(String.valueOf(txtYourapi)));
+//                String yourclass = "";
+//                if (heart != "") {
+//                    inst.setValue(6, Integer.parseInt(heart));
+////                String hr = new MiClass1;
+//                    double predSVM = 0;
+//                    predSVM = svm.classifyInstance(inst);
+//                    String predString = trainDataset.classAttribute().value((int) predSVM);
+//                    //String yourclass = "You belong to " + "'"+ predString+ "'";
+//                    yourclass = predString;
+//                } else {
+//                    yourclass = "Null Prediction";
+//                }
+//
+//                yourapi.setText(yourclass);
+////                String phoneNumber = "9932186594";
+////                String smsBody = "You belong to "+ yourclass ;
+////                SmsManager smsManager = SmsManager.getDefault();
+////                smsManager.sendTextMessage(phoneNumber, null, smsBody, null, null);
+//                return yourclass;
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
             return "";
         }
 
-        private void sendsms(String phoneNumber, String message) {
-            SmsManager sms = SmsManager.getDefault();
-            sms.sendTextMessage(phoneNumber, null, message, null, null);
-        }
+//        private void sendsms(String phoneNumber, String message) {
+//            SmsManager sms = SmsManager.getDefault();
+//            sms.sendTextMessage(phoneNumber, null, message, null, null);
+//        }
 
         private String sendGet() throws IOException, InterruptedException, JSONException {
             if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -173,8 +184,8 @@ public class UserActivity extends AppCompatActivity {
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
             String reportDate = df.format(before_d);
             String use_date = reportDate.substring(11, 16);
-            txtYourHr.setText("Heart Rate at " + use_date);
-            txtyourcl.setText("Your class at " + use_date);
+            yourhr.setText("Heart Rate at " + use_date);
+            yourcl.setText("Your class at " + use_date);
             String url = "https://api.fitbit.com/1/user/-/activities/heart/date/today/1d/1min/time/" + use_date + "/" + use_date + ".json";
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -182,8 +193,9 @@ public class UserActivity extends AppCompatActivity {
             con.setRequestMethod("GET");
 //            con.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1REZYSkoiLCJhdWQiOiIyMjg0OFMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNDkwNTMyNTkyLCJpYXQiOjE0ODk5Mjc3OTJ9.PFmPCqiI8x7nJtnbPxKTjyBvYexhefNlHMV8FCPYLLA");
 //            con.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1REZYSkoiLCJhdWQiOiIyMjg0OFMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTIzMDQ5NDA3LCJpYXQiOjE0OTE1MTM0MDd9.GqJ-ZjPHA3nIgcTnGAg7BUNQPdx8EWIpIDv_ZpzC7fo");
-            con.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1REZYSkoiLCJhdWQiOiIyMjg0OFMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTIzMDQ5NDA3LCJpYXQiOjE0OTc3MzE4MjB9.MHi97wE-2k9xLraDla9P1zsAy-emXeEnKshL9EmtIaQ");
-            int responseCode = con.getResponseCode();//
+            con.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1REZYSkoiLCJhdWQiOiIyMjg0OFMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJhY3QgcnNldCBybG9jIHJ3ZWkgcmhyIHJwcm8gcm51dCByc2xlIiwiZXhwIjoxNTEyODU4NzA0LCJpYXQiOjE1MTIyNTM5MDR9.z8ugoxBgyGLKX4QQRf8CWfXNMAWxAOzAViFSAFz9mdU");
+            int responseCode = con.getResponseCode();
+
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));
             String inputLine;
@@ -197,16 +209,17 @@ public class UserActivity extends AppCompatActivity {
             in.close();
             JSONObject jsonObj = new JSONObject(jsonString.toString());
             JSONObject final_json = null;
+            Toast.makeText(getApplicationContext(), "Response "+Integer.toString(con.getResponseCode()), Toast.LENGTH_LONG).show();
             try {
                 final_json = new JSONObject(jsonObj.getJSONObject("activities-heart-intraday").getJSONArray("dataset").get(0).toString());
-                txtYourapi.setText(final_json.get("value").toString());
+                yourapi.setText(final_json.get("value").toString());
             } catch (JSONException e) {
-                txtYourapi.setText("Null");
+                yourapi.setText("Null");
             }
+
             if (final_json != null) {
                 return final_json.get("value").toString();
             }
-
 
             return "";
         }
