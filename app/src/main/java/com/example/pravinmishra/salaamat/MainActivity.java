@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
     private static final String URL_FOR_LOGIN = "https://XXX.XXX.X.XX/android_login_example/login.php";
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                         String user = jObj.getJSONObject("user").getString("name");
                         // Launch User activity
                         Intent intent = new Intent(
-                                LoginActivity.this,
+                                MainActivity.this,
                                 UserActivity.class);
                         intent.putExtra("username", user);
                         startActivity(intent);
@@ -128,11 +128,4 @@ public class LoginActivity extends AppCompatActivity {
     }
 }
 
-public class MainActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
-}
