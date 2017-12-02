@@ -84,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
                                 MainActivity.this,
                                 UserActivity.class);
                         intent.putExtra("username", user);
+                        intent.putExtra("email", jObj.getJSONObject("user").getString("email"));
+                        intent.putExtra("age", jObj.getJSONObject("user").getString("age"));
+                        intent.putExtra("height", jObj.getJSONObject("user").getString("height"));
+                        intent.putExtra("weight", jObj.getJSONObject("user").getString("weight"));
+                        intent.putExtra("gender", jObj.getJSONObject("user").getString("gender"));
+                        intent.putExtra("smoking", jObj.getJSONObject("user").getString("smoking"));
+                        intent.putExtra("drinking", jObj.getJSONObject("user").getString("drinking"));
                         startActivity(intent);
                         finish();
                     } else {

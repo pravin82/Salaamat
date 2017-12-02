@@ -1,6 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="63dp">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <!--<EditText-->
+            <!--android:id="@+id/emailText"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:inputType="textEmailAddress"-->
+            <!--android:hint="Enter email address"/>-->
+            <!--<Button-->
+            <!--android:id="@+id/queryButton"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="end"-->
+            <!--style="@style/Base.Widget.AppCompat.Button.Borderless"-->
+            <!--android:text="Search"/>-->
+            <!--<TextView-->
+            <!--android:id="@+id/responseView"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+            <!--<Button-->
+            <!--android:id="@+id/queryButton"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="end"-->
+            <!--style="@style/Base.Widget.AppCompat.Button.Borderless"-->
+            <!--android:text="Search"/>-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="gone" />
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/responseView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </ScrollView>
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome"
+                android:textStyle="bold"
+                android:textSize="20dp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1"
+                android:visibility="visible">
+                <TableRow>
+                    <TextView
+                        android:text="Name"
+                        android:padding="4dip" />
+                    <TextView
+                        android:id="@+id/name"
+                        android:gravity="right"
+                        android:padding="4dip" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="Username"
+                        android:padding="4dip" />
+                    <TextView
+                        android:id="@+id/username"
+                        android:gravity="right"
+                        android:padding="4dip" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="Age"
+                        android:padding="4dip" />
+                    <TextView
+                        android:id="@+id/age"
+                        android:gravity="right"
+                        android:padding="4dip" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:text="Height (in cms)"
+                        android:padding="4dip" />
+                    <TextView
+                        android:id="@+id/height"
+                        android:gravity="right"
+                        android:padding="4dip" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="Weight (in kgs)"
+                        android:padding="4dip" />
+                    <TextView
+                        android:id="@+id/weight"
+                        android:gravity="right"
+                        android:padding="4dip" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="Gender"
+                        android:padding="4dip" />
+                    <TextView
+                        android:id="@+id/gender"
+                        android:gravity="right"
+                        android:padding="4dip" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="Smoking Habit (type)"
+                        android:padding="4dip" />
+                    <TextView
+                        android:id="@+id/smoking"
+                        android:gravity="right"
+                        android:padding="4dip" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="Alcohol Habit (type)"
+                        android:padding="4dip" />
+                    <TextView
+                        android:id="@+id/drinking"
+                        android:gravity="right"
+                        android:padding="4dip" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/yourhr"
+                        android:textStyle="bold"
+                        android:padding="4dip" />
+                    <!--android:text="Heart Rate at "-->
+
+                    <TextView
+                        android:id="@+id/yourapi"
+                        android:gravity="right"
+                        android:textStyle="bold"
+                        android:textColor="#00ff00"
+                        android:padding="4dip" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/yourcl"
+                        android:textStyle="bold"
+                        android:padding="4dip" />
+                    <!--android:text="Your Class"-->
+                    <TextView
+                        android:id="@+id/yourclass"
+                        android:textStyle="bold"
+                        android:gravity="right"
+                        android:textColor="#00ff00"
+                        android:padding="4dip" />
+                </TableRow>
+
+            </TableLayout>
+
+            <!--<TextView-->
+            <!--android:id="@+id/yourclass"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="22dp"-->
+            <!--android:padding="10dp"-->
+            <!--android:textColor="#006400"/>-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/name"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="10dp"-->
+            <!--android:textColor="@color/lbl_name"-->
+            <!--android:textSize="24dp" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/username"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="22dp" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/age"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="22dp" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/height"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="22dp" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/weight"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="22dp" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/workertrade"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="22dp" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/smokinghabit"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="22dp" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/alcoholhabit"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="22dp" />-->
+
+
+            <Button
+                android:id="@+id/btnHitAPI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#ff00ff"
+                android:text="Know Class"
+                android:textAllCaps="false"
+                android:textColor="#00ff00"
+                android:textSize="15sp"
+                android:singleLine="true" />
+
+            <!--<Button-->
+            <!--android:id="@+id/btnKnowyourclass"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="@color/btn_knowyourclass_bg"-->
+            <!--android:text="@string/btn_knowyourclass"-->
+            <!--android:onClick="sendsms"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="15sp"-->
+            <!--android:singleLine="true"-->
+            <!--android:layout_weight="0.19" />-->
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#ff00ff"
+                android:text="Logout"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
