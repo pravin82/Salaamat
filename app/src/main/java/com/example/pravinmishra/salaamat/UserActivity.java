@@ -108,7 +108,7 @@ public class UserActivity extends AppCompatActivity {
         }
 
         private String miclass2CustomMethod(String vinay) {
-            HashMap<String, String> user1 = db.getUserDetails();
+            //HashMap<String, String> user1 = db.getUserDetails();
             CSVLoader loader = new CSVLoader();
             CalendarContract.Instances trainDataset = null;
             AssetManager manager = getAssets();
@@ -157,56 +157,59 @@ public class UserActivity extends AppCompatActivity {
             return "";
         }
 
-
-
-    }
-
-    private String sendGet() throws IOException, InterruptedException, JSONException {
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
+        private void sendsms(String phoneNumber, String message) {
+            SmsManager sms = SmsManager.getDefault();
+            sms.sendTextMessage(phoneNumber, null, message, null, null);
         }
-        Calendar now = Calendar.getInstance();
-        now.add(Calendar.MINUTE, -15);
-        Date before_d = now.getTime();
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-        String reportDate = df.format(before_d);
-        String use_date = reportDate.substring(11, 16);
-        txtYourHr.setText("Heart Rate at " + use_date);
-        txtyourcl.setText("Your class at " + use_date);
-        String url = "https://api.fitbit.com/1/user/-/activities/heart/date/today/1d/1min/time/" + use_date + "/" + use_date + ".json";
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-        con.setRequestMethod("GET");
+        private String sendGet() throws IOException, InterruptedException, JSONException {
+            if (android.os.Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+            }
+            Calendar now = Calendar.getInstance();
+            now.add(Calendar.MINUTE, -15);
+            Date before_d = now.getTime();
+            DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+            String reportDate = df.format(before_d);
+            String use_date = reportDate.substring(11, 16);
+            txtYourHr.setText("Heart Rate at " + use_date);
+            txtyourcl.setText("Your class at " + use_date);
+            String url = "https://api.fitbit.com/1/user/-/activities/heart/date/today/1d/1min/time/" + use_date + "/" + use_date + ".json";
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+            con.setRequestMethod("GET");
 //            con.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1REZYSkoiLCJhdWQiOiIyMjg0OFMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNDkwNTMyNTkyLCJpYXQiOjE0ODk5Mjc3OTJ9.PFmPCqiI8x7nJtnbPxKTjyBvYexhefNlHMV8FCPYLLA");
 //            con.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1REZYSkoiLCJhdWQiOiIyMjg0OFMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTIzMDQ5NDA3LCJpYXQiOjE0OTE1MTM0MDd9.GqJ-ZjPHA3nIgcTnGAg7BUNQPdx8EWIpIDv_ZpzC7fo");
-        con.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1REZYSkoiLCJhdWQiOiIyMjg0OFMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTIzMDQ5NDA3LCJpYXQiOjE0OTc3MzE4MjB9.MHi97wE-2k9xLraDla9P1zsAy-emXeEnKshL9EmtIaQ");
-        int responseCode = con.getResponseCode();//
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-        StringBuilder jsonString = new StringBuilder();
+            con.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1REZYSkoiLCJhdWQiOiIyMjg0OFMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTIzMDQ5NDA3LCJpYXQiOjE0OTc3MzE4MjB9.MHi97wE-2k9xLraDla9P1zsAy-emXeEnKshL9EmtIaQ");
+            int responseCode = con.getResponseCode();//
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            StringBuilder jsonString = new StringBuilder();
 
-        while ((inputLine = in.readLine()) != null) {
-            jsonString.append(inputLine);
-            response.append(inputLine);
-        }
-        in.close();
-        JSONObject jsonObj = new JSONObject(jsonString.toString());
-        JSONObject final_json = null;
-        try {
-            final_json = new JSONObject(jsonObj.getJSONObject("activities-heart-intraday").getJSONArray("dataset").get(0).toString());
-            txtYourapi.setText(final_json.get("value").toString());
-        } catch (JSONException e) {
-            txtYourapi.setText("Null");
-        }
-        if (final_json != null) {
-            return final_json.get("value").toString();
-        }
+            while ((inputLine = in.readLine()) != null) {
+                jsonString.append(inputLine);
+                response.append(inputLine);
+            }
+            in.close();
+            JSONObject jsonObj = new JSONObject(jsonString.toString());
+            JSONObject final_json = null;
+            try {
+                final_json = new JSONObject(jsonObj.getJSONObject("activities-heart-intraday").getJSONArray("dataset").get(0).toString());
+                txtYourapi.setText(final_json.get("value").toString());
+            } catch (JSONException e) {
+                txtYourapi.setText("Null");
+            }
+            if (final_json != null) {
+                return final_json.get("value").toString();
+            }
 
 
-        return "";
+            return "";
+        }
+
     }
 }
