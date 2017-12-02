@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = "MainActivity";
     private static final String URL_FOR_LOGIN = "https://XXX.XXX.X.XX/android_login_example/login.php";
     ProgressDialog progressDialog;
     private EditText loginInputEmail, loginInputPassword;

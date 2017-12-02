@@ -7,7 +7,9 @@
     <string name="female">Female</string>
     <string name="btn_sign_up">SignUp</string>
     <string name="btn_link_login">LogIn</string>
-
+    <string name="btn_link_signup">SignUP</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_dob">DOB</string>
 
 
 </resources>
