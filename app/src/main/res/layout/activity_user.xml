@@ -160,7 +160,8 @@
                     <TextView
                         android:id="@+id/yourhr"
                         android:textStyle="bold"
-                        android:padding="4dip" />
+                        android:padding="4dip"
+                        android:text="Heart Rate"/>
                     <!--android:text="Heart Rate at "-->
 
                     <TextView
@@ -174,6 +175,7 @@
                     <TextView
                         android:id="@+id/yourcl"
                         android:textStyle="bold"
+                        android:text="Your Class"
                         android:padding="4dip" />
                     <!--android:text="Your Class"-->
                     <TextView
