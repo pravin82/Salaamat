@@ -169,6 +169,7 @@
                         android:gravity="right"
                         android:textStyle="bold"
                         android:textColor="#00ff00"
+                        android:text="null"
                         android:padding="4dip" />
                 </TableRow>
                 <TableRow>
@@ -183,6 +184,7 @@
                         android:textStyle="bold"
                         android:gravity="right"
                         android:textColor="#00ff00"
+                        android:text="Null Prediction"
                         android:padding="4dip" />
                 </TableRow>
 

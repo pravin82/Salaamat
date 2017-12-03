@@ -9,15 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import weka.classifiers.functions.SMO;
-//import weka.core.DenseInstance;
-//import weka.core.Instance;
-//import weka.core.Instances;
-//import weka.core.converters.CSVLoader;
+import weka.classifiers.functions.SMO;
+import weka.core.DenseInstance;
+import weka.core.Instance;
+import weka.core.Instances;
+import weka.core.converters.CSVLoader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +44,7 @@ import java.util.TimerTask;
 public class UserActivity extends AppCompatActivity {
 
     private TextView name, username, age, height, weight, gender, smoking, drinking, yourapi, yourcl, yourhr;
+    private Button btnLogout,btnHitAPI;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,17 @@ public class UserActivity extends AppCompatActivity {
         yourapi = (TextView) findViewById(R.id.yourapi);
         yourcl = (TextView) findViewById(R.id.yourcl);
         yourhr = (TextView) findViewById(R.id.yourhr);
+        btnLogout = (Button) findViewById(R.id.btnLogout);
+        btnHitAPI = (Button) findViewById(R.id.btnHitAPI);
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent logintent=new Intent(UserActivity.this,MainActivity.class);
+                startActivity(logintent);
+            }
+        });
+
 
         Intent intent = getIntent();
         String name_i = intent.getStringExtra("name");
@@ -79,7 +92,7 @@ public class UserActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-//                        btnHitAPI.performClick();
+                       btnHitAPI.performClick();
                         MiClass1 htt = new MiClass1();
                         try {
                             String vin = htt.sendGet();
@@ -95,7 +108,7 @@ public class UserActivity extends AppCompatActivity {
                 });
 
             }
-        }, 0, 6000);
+        }, 0, 60000);
 
     }
 
@@ -119,52 +132,55 @@ public class UserActivity extends AppCompatActivity {
         }
 
         private String miclass2CustomMethod(String vinay) {
-            //HashMap<String, String> user1 = db.getUserDetails();
-//            CSVLoader loader = new CSVLoader();
-//            CalendarContract.Instances trainDataset = null;
-//            AssetManager manager = getAssets();
-//            try {
-//                InputStream ttt = manager.open("StaticTrainData1.csv");
-//                loader.setSource(ttt);
-//                SMO svm = new SMO();
-//                trainDataset = loader.getDataSet();
-//                trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
-//                svm.buildClassifier(trainDataset);
-//                Instance inst = new DenseInstance(trainDataset.numAttributes());
-//                inst.setDataset(trainDataset);
-//                inst.setValue(0, Integer.parseInt(intent.getStringExtra("age")));
-//                inst.setValue(1, Integer.parseInt(user1.get("height")));
-//                inst.setValue(2, Integer.parseInt(user1.get("weight")));
-//                inst.setValue(3, Integer.parseInt(user1.get("smokinghabit")));
-//                inst.setValue(4, Integer.parseInt(user1.get("alcoholhabit")));
-//                inst.setValue(5, Integer.parseInt(user1.get("workertrade")));
-////                heart = "140";
-//                heart = vinay;
-////                inst.setValue(6, Integer.parseInt(String.valueOf(txtYourapi)));
-//                String yourclass = "";
-//                if (heart != "") {
-//                    inst.setValue(6, Integer.parseInt(heart));
-////                String hr = new MiClass1;
-//                    double predSVM = 0;
-//                    predSVM = svm.classifyInstance(inst);
-//                    String predString = trainDataset.classAttribute().value((int) predSVM);
-//                    //String yourclass = "You belong to " + "'"+ predString+ "'";
-//                    yourclass = predString;
-//                } else {
-//                    yourclass = "Null Prediction";
-//                }
-//
-//                yourapi.setText(yourclass);
-////                String phoneNumber = "9932186594";
-////                String smsBody = "You belong to "+ yourclass ;
-////                SmsManager smsManager = SmsManager.getDefault();
-////                smsManager.sendTextMessage(phoneNumber, null, smsBody, null, null);
-//                return yourclass;
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
+           // HashMap<String, String> user1 = db.getUserDetails();
+           CSVLoader loader = new CSVLoader();
+            Instances trainDataset = null;
+           AssetManager manager = getAssets();
+            try {
+                InputStream ttt = manager.open("StaticTrainData1.csv");
+                loader.setSource(ttt);
+                Intent intent=getIntent();
+                SMO svm = new SMO();
+                trainDataset = loader.getDataSet();
+                trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
+                svm.buildClassifier(trainDataset);
+                Instance inst = new DenseInstance(trainDataset.numAttributes());
+                inst.setDataset(trainDataset);
+                inst.setValue(0, Integer.parseInt(intent.getStringExtra("age")));
+                inst.setValue(1, Integer.parseInt(intent.getStringExtra("height")));
+                inst.setValue(2, Integer.parseInt(intent.getStringExtra("weight")));
+                inst.setValue(3, Integer.parseInt(intent.getStringExtra("smokinghabit")));
+                inst.setValue(4, Integer.parseInt(intent.getStringExtra("alcoholhabit")));
+                inst.setValue(5, Integer.parseInt(intent.getStringExtra("gender")));
+
+                // Air Quality parameters could not be included in the model due to lack of time
+             String  heart = "140";
+                heart = vinay;
+//                inst.setValue(6, Integer.parseInt(String.valueOf(txtYourapi)));
+                String yourclass = "";
+                if (heart != "") {
+                    inst.setValue(6, Integer.parseInt(heart));
+//                String hr = new MiClass1;
+                    double predSVM = 0;
+                    predSVM = svm.classifyInstance(inst);
+                    String predString = trainDataset.classAttribute().value((int) predSVM);
+                    //String yourclass = "You belong to " + "'"+ predString+ "'";
+                    yourclass = predString;
+                } else {
+                    yourclass = "Null Prediction";
+                }
+
+                yourapi.setText(yourclass);
+//                String phoneNumber = "9932186594";
+//                String smsBody = "You belong to "+ yourclass ;
+//                SmsManager smsManager = SmsManager.getDefault();
+//                smsManager.sendTextMessage(phoneNumber, null, smsBody, null, null);
+                return yourclass;
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return "";
         }
 
@@ -225,4 +241,5 @@ public class UserActivity extends AppCompatActivity {
         }
 
     }
+
 }
